@@ -1,0 +1,36 @@
+@startuml DiagramaDeClasses
+
+skinparam classAttributeIconSize 0
+
+class Jogador {
+    -nickName: String
+    -simbolo: String
+    +jogar(): void
+    +getNickName(): String
+    +getSimbolo(): String
+}
+
+class ComputadorFacil {
+    +jogar(): void
+}
+
+class ComputadorDificil {
+    +jogar(): void
+}
+
+class Tabuleiro {
+    -tabuleiro: String
+    -quantidadeDeJogadas: int
+    +verificarVitoria(): boolean
+    +getQuantidadeDeJogadas(): int
+}
+
+class Principal{
+    +main(): void
+    +menu(): String
+}
+
+Jogador <|-- ComputadorFacil
+Jogador <|-- ComputadorDificil
+
+@enduml
