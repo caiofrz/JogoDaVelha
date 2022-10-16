@@ -6,9 +6,11 @@ public class Jogador{
     private String simbolo;
 
 
-    public Jogador(String nickName) {
+    public Jogador(String nickName, String simbolo) {
         this.nickName = nickName;
+        this.simbolo = simbolo;
     }
+
 
     public void jogar(){
 
