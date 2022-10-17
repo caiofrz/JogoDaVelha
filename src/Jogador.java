@@ -12,7 +12,7 @@ public class Jogador{
     }
 
 
-    public void jogar(){
+    public void jogar(String[][] tabuleiro){
 
     }
 
