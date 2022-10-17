@@ -10,7 +10,7 @@ public class ComputadorFacil extends Jogador{
 
     @Override
     public void jogar(String[][] tabuleiro){
-        Random aleatorio = new Random(3);
+        Random aleatorio = new Random();
 
         int linha, coluna;
 
