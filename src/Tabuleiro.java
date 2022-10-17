@@ -14,7 +14,7 @@ public class Tabuleiro {
     public void inicializarTabuleiro(){ // Inicializa cada posição do tabuleiro como um 'espaço em branco"
         for (int linha = 0; linha < 3; linha++) {
             for (int coluna = 0; coluna < 3; coluna++) {
-                this.posicoesTabuleiro[linha][coluna] = "X";
+                this.posicoesTabuleiro[linha][coluna] = " ";
             }
         }
     }
@@ -23,14 +23,14 @@ public class Tabuleiro {
 
         Principal.limparTela();
 
-         for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                System.out.print(this.posicoesTabuleiro[i][j]);
-                if(j<2){
+         for(int linha = 0; linha < 3; linha++){
+            for(int coluna = 0; coluna < 3; coluna++){
+                System.out.print(this.posicoesTabuleiro[linha][coluna]);
+                if(coluna < 2){
                     System.out.print("  |  ");
                 }
             }
-            if(i<2){
+            if(linha < 2){
                 System.out.println("\n___  ___  ___");
             }
             
