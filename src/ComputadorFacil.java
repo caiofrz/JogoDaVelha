@@ -14,18 +14,16 @@ public class ComputadorFacil extends Jogador{
 
         int linha, coluna;
 
-        while(true){
-            linha = aleatorio.nextInt(0, 2);
-            coluna = aleatorio.nextInt(0, 2);
-
+        try {
+            linha = aleatorio.nextInt(3);
+            coluna = aleatorio.nextInt(3);
+            
             if(tabuleiro[linha][coluna] == " "){
-                tabuleiro[linha][coluna] = super.getSimbolo();
-                return;
+                tabuleiro[linha][coluna] = this.getSimbolo();
             }
+            
+        } catch (Exception ex) {
+            
         }
-
-        
-
     }
-
 }
