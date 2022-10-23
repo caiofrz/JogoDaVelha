@@ -1,9 +1,15 @@
 package src;
 
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 public class Jogador{
+
+    static Scanner input = new Scanner(System.in);
 
     private String nickName;
     private String simbolo;
+    private Jogador oponente;
 
 
     public Jogador(String nickName, String simbolo) {
@@ -14,20 +20,128 @@ public class Jogador{
 
     public void jogar(String[][] tabuleiro){
 
+        int linha;
+        int coluna;
+
+        try{
+            System.out.println("Linha: ");   // 
+            linha = (int) input.nextDouble();  //       
+                                               // Lendo a posição do tabuleiro para jogada
+            System.out.println("Coluna: "); //
+            coluna = (int) input.nextDouble();//
+
+            if(tabuleiro[linha][coluna] == " "){
+                tabuleiro[linha][coluna] = this.getSimbolo();
+            } else {
+                System.out.println("Jogada inválida!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);   
+            input.close();   
+        }
     }
+
+    /**
+     * @param jogador1
+     * @return
+     */
+    public void escolherOponente(){ //Função que verifica o oponente do jogador
+
+        try{
+            System.out.println("\n");
+            System.out.println("--------------------------------");
+            System.out.println("\tVAI JOGAR SOZINHO? ");
+            System.out.println("--------------------------------");
+
+
+            System.out.println("1. SIM");
+            System.out.println("2. NÃO");
+
+            System.out.println("\n");
+            System.out.println("INFORME O NUMERO EQUIVALENTE A SUA ESCOLHA: ");
+            int escolha = input.nextInt();
+
+
+            if (escolha == 1) {
+                // Caso o oponente seja o computador, é feita a chamada da função de escolha de dificuldade 
+                this.escolherDificuldade();
+            } else if(escolha == 2){
+                // Caso tenha 2 jogadores, essa estrura cria a instancia de um novo jogador
+                System.out.println("INFORME O NICK: ");
+                String nickName = input.next();
+
+                String simbolo = this.getSimbolo() == "X" ? "O" : "X";
+                Jogador jogador2 = new Jogador(nickName, simbolo);
+
+                this.oponente = jogador2;
+                
+            } else {
+                System.out.println("ESCOLHA INVÁLIDA");
+            }
+            
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "ERRO");
+        }
+
+        Principal.limparTela();
+    }
+
+
+    public void escolherDificuldade(){ //Função responsável pela escolha do nível do jogo
+
+        String simbolo = this.getSimbolo() == "X" ? "X" : "O";
+
+        try { //Estrutura de tratamento de exceção
+            System.out.println("\n");
+            System.out.println("--------------------------------");
+            System.out.println("ESCOLHA A DIFICULDADE DO JOGO!");
+            System.out.println("--------------------------------");
+
+            System.out.println("1. Fácil");
+            System.out.println("2. Difícil");
+            System.out.println("\n");
+
+            System.out.println("INFORME O NUMERO EQUIVALENTE A SUA ESCOLHA: ");
+
+            int dificuldade = input.nextInt();
+                
+            while(dificuldade !=1 && dificuldade !=2){ //Loop de validação da escolha do nível
+
+                System.out.println("ESCOLHA INVÁLIDA! INFORME A NOVA ESCOLHA: ");
+                dificuldade = input.nextInt();
+            }
+
+            if (dificuldade == 1) {// Estrutura que instancia um jogador-computador de acordo o nível de dificuldade
+                ComputadorFacil jogador2 = new ComputadorFacil("pcFacil", simbolo); 
+                this.oponente = jogador2;
+
+            } else {
+                ComputadorDificil jogador2 = new ComputadorDificil("pcDificil", simbolo);
+                this.oponente = jogador2;
+            }
+        } catch (Exception ex) { 
+            JOptionPane.showMessageDialog(null, "ERRO"); //Mosta um painel na tela com a mensagem "ERRO"
+        }
+                
+    }
+
+    public Jogador getOponente(){
+        return oponente;
+    }
+    
 
     public String getNickName() {
         return this.nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public String getSimbolo() {
         return this.simbolo;
     }
 
+    @Override
+    public String toString(){
+        return this.nickName + " - " + this.simbolo;
+    }
     
 }
 
