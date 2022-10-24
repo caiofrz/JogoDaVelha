@@ -5,9 +5,14 @@ skinparam classAttributeIconSize 0
 class Jogador {
     -nickName: String
     -simbolo: String
+    -oponente: Jogador
     +jogar(): void
+    +escolherOponente(): void
+    +escolherDificuldade(): void
     +getNickName(): String
     +getSimbolo(): String
+    +getOponente(): Jogador
+    +toString(): String
 }
 
 class ComputadorFacil {
@@ -19,15 +24,23 @@ class ComputadorDificil {
 }
 
 class Tabuleiro {
-    -tabuleiro: String
+    -posicoesTabuleiro: String
     -quantidadeDeJogadas: int
+    -simboloVencedor: String
+    -inicializarTabuleiro(): void
     +verificarVitoria(): boolean
+    +mostrarTabuleiro(): void
+    +getPosicoesTabuleiro(): String
+    +getSimboloVencedor(): String
     +getQuantidadeDeJogadas(): int
+    +setQuantidadeDeJogadas(): void
 }
 
 class Principal{
     +main(): void
-    +menu(): String
+    +apresentarResultado(): void
+    +menuInstrucoes(): void
+    +limparTela(): void
 }
 
 Jogador <|-- ComputadorFacil
