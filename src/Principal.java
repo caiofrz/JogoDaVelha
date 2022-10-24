@@ -3,7 +3,6 @@ package src;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
-
 public class Principal {
 
     static Scanner input = new Scanner(System.in);
@@ -19,55 +18,50 @@ public class Principal {
 
         menuInstrucoes();//Chamada da função que irá mostrar as instruções do jogo
         
-
         System.out.println("INFORME SEU NICK: ");
         String nickName = input.next();
 
-        System.out.println("INFORME O SÍMBOLO QUE DESEJA JOGAR (X ou O): ");
+        System.out.println("INFORME O SÍMBOLO QUE DESEJA JOGAR: ");
         String simbolo = input.next();
 
-        Jogador jogador1 = new Jogador(nickName, simbolo);//Criando o jogador 1, com base no nick e simbolo escolhidos
+        Jogador jogador1 = new Jogador(nickName, simbolo);//Criando jogador principal, com base no nick e simbolo escolhidos
         
         jogador1.escolherOponente(); //Faz a chamada do menu, para o jogador escolher seu oponente/nível de jogo
 
         Jogador jogador2 = jogador1.getOponente();
 
         //iniciando o jogo
-        while(!vitoria){
-
-            if (tabuleiro.getQuantidadeJogadas() == 9) { //se o tabuleiro estiver completo o jogo acabou
-                break;
-            }
+        do{
 
             tabuleiro.mostrarTabuleiro();
 
             jogador1.jogar(tabuleiro.getPosicoesTabuleiro());
-            System.out.println("1");
+            tabuleiro.setQuantidadeJogadas();
             vitoria = tabuleiro.verificarVitoria();
-            System.out.println("2");
-            tabuleiro.setQuantidadeJogadas();      
-            System.out.println("3");
 
-            tabuleiro.mostrarTabuleiro();
+            if(tabuleiro.getQuantidadeJogadas() == 9){ //Caso não haja vitória e o tabuleiro esteja completo, o Loop é encerrado 
+                break;
+            }
 
-            jogador2.jogar(tabuleiro.getPosicoesTabuleiro());
-            System.out.println("4");
-            vitoria = tabuleiro.verificarVitoria(); 
-            System.out.println("5");
-            tabuleiro.setQuantidadeJogadas();    
-            System.out.println("6");
+            if (!(vitoria)) {
+                tabuleiro.mostrarTabuleiro();
+                jogador2.jogar(tabuleiro.getPosicoesTabuleiro());
+                tabuleiro.setQuantidadeJogadas();
+            }
+        } while(!(tabuleiro.verificarVitoria()));//Loop encerra quando houver vitória 
 
-        }
-
-        apresentarGanhador(tabuleiro, jogador1, jogador2);
+        //Finalizando o jogo 
+        tabuleiro.mostrarTabuleiro();
+        apresentarResultado(tabuleiro, jogador1, jogador2);
         input.close();
-        
-    }
+
+    } 
 
 
-    public static void apresentarGanhador(Tabuleiro tabuleiro, Jogador jogador1, Jogador jogador2){
+    public static void apresentarResultado(Tabuleiro tabuleiro, Jogador jogador1, Jogador jogador2){
+        //Método responsável por apresentar o resultado da partida
 
-        if(tabuleiro.verificarVitoria() == false && tabuleiro.getQuantidadeJogadas() == 9 ){
+        if(tabuleiro.verificarVitoria() == false && tabuleiro.getQuantidadeJogadas() == 9){
             JOptionPane.showMessageDialog(null, "EMPATE");
         } else if(tabuleiro.getSimboloVencedor() == jogador1.getSimbolo()){
             JOptionPane.showMessageDialog(null, "Vencedor: " + jogador1.toString());
@@ -77,7 +71,7 @@ public class Principal {
     }
 
 
-    public static void menuInstrucoes(){
+    public static void menuInstrucoes(){//Método responsável por apresentar as instruções do jogo
 
         System.out.println("--------------------------------");
         System.out.println("\tINSTRUÇÕES");
@@ -90,7 +84,10 @@ public class Principal {
         System.out.println("5. As colunas vão de 0 a 2 e da esquerda para a direta, onde 0 é a coluna mais a esquerda");
         System.out.println("6. EX. de jogada: linha = 0 e coluna = 0");
         System.out.println("7. Com esse exemplo de jogada você irá marcar o primeiro espaço mais a esquerda e mais acima do tabuleiro");
-        System.out.println();
+        System.out.println("8. As jogadas do computador serão marcadas como 'PC'");
+        System.out.println("9. As jogadas do jogador 2 serão marcadas como 'O'");
+        System.out.println("10. O jogador principal poderá escolher qualquer símbolo para marcar suas jogadas");
+        System.out.println("\n");
     }
 
 

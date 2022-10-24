@@ -36,16 +36,13 @@ public class Jogador{
                 System.out.println("Jogada inválida!");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);   
+            JOptionPane.showMessageDialog(null, "Jogada inválida!");   
             input.close();   
         }
     }
 
-    /**
-     * @param jogador1
-     * @return
-     */
-    public void escolherOponente(){ //Função que verifica o oponente do jogador
+
+    public void escolherOponente(){ //Método responsável por setar o oponente do jogador principal
 
         try{
             System.out.println("\n");
@@ -67,14 +64,10 @@ public class Jogador{
                 this.escolherDificuldade();
             } else if(escolha == 2){
                 // Caso tenha 2 jogadores, essa estrura cria a instancia de um novo jogador
-                System.out.println("INFORME O NICK: ");
+                System.out.println("INFORME O NICK DO SEGUNDO JOGADOR: ");
                 String nickName = input.next();
 
-                String simbolo = this.getSimbolo() == "X" ? "O" : "X";
-                Jogador jogador2 = new Jogador(nickName, simbolo);
-
-                this.oponente = jogador2;
-                
+                this.oponente = new Jogador(nickName, "O");
             } else {
                 System.out.println("ESCOLHA INVÁLIDA");
             }
@@ -87,9 +80,7 @@ public class Jogador{
     }
 
 
-    public void escolherDificuldade(){ //Função responsável pela escolha do nível do jogo
-
-        String simbolo = this.getSimbolo() == "X" ? "X" : "O";
+    public void escolherDificuldade(){ //Método responsável pela escolha do nível do jogo
 
         try { //Estrutura de tratamento de exceção
             System.out.println("\n");
@@ -102,7 +93,6 @@ public class Jogador{
             System.out.println("\n");
 
             System.out.println("INFORME O NUMERO EQUIVALENTE A SUA ESCOLHA: ");
-
             int dificuldade = input.nextInt();
                 
             while(dificuldade !=1 && dificuldade !=2){ //Loop de validação da escolha do nível
@@ -111,13 +101,10 @@ public class Jogador{
                 dificuldade = input.nextInt();
             }
 
-            if (dificuldade == 1) {// Estrutura que instancia um jogador-computador de acordo o nível de dificuldade
-                ComputadorFacil jogador2 = new ComputadorFacil("pcFacil", simbolo); 
-                this.oponente = jogador2;
-
+            if (dificuldade == 1) {// Estrutura que instancia um jogador-computador de acordo o nível de dificuldade escolhido
+                this.oponente = new ComputadorFacil("pcFacil", "PC"); 
             } else {
-                ComputadorDificil jogador2 = new ComputadorDificil("pcDificil", simbolo);
-                this.oponente = jogador2;
+                this.oponente = new ComputadorDificil("pcDificil", "PC");
             }
         } catch (Exception ex) { 
             JOptionPane.showMessageDialog(null, "ERRO"); //Mosta um painel na tela com a mensagem "ERRO"
@@ -129,7 +116,6 @@ public class Jogador{
         return oponente;
     }
     
-
     public String getNickName() {
         return this.nickName;
     }
