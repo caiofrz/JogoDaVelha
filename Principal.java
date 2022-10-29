@@ -60,7 +60,6 @@ public class Principal {
 
     public static void apresentarResultado(Tabuleiro tabuleiro, Jogador jogador1, Jogador jogador2){
         //Método responsável por apresentar o resultado da partida
-
         if(tabuleiro.verificarVitoria() == false && tabuleiro.getQuantidadeJogadas() == 9){
             JOptionPane.showMessageDialog(null, "EMPATE");
         } else if(tabuleiro.getSimboloVencedor() == jogador1.getSimbolo()){

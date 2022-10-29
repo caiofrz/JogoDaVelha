@@ -19,7 +19,6 @@ public class ComputadorDificil extends Jogador{
                     try{
                         if(tabuleiro[linha+1][coluna] != this.getSimbolo() && tabuleiro[linha+1][coluna] == " "){
                             tabuleiro[linha+1][coluna] = this.getSimbolo();
-                            System.out.println("Jogada 1");
                             return;
                         }
                     } catch (Exception ex){
@@ -28,7 +27,6 @@ public class ComputadorDificil extends Jogador{
                     try {
                         if(tabuleiro[linha-1][coluna] == " "){
                             tabuleiro[linha-1][coluna] = this.getSimbolo();
-                            System.out.println("Jogada 2");
                             return;
                         }
                     } catch (Exception ex) {
@@ -39,7 +37,6 @@ public class ComputadorDificil extends Jogador{
                     try { 
                         if(tabuleiro[linha][coluna+1] == " "){
                             tabuleiro[linha][coluna+1] = this.getSimbolo();
-                            System.out.println("Jogada 3");
                             return;
                         } 
                     }   catch (Exception ex) {
@@ -49,7 +46,6 @@ public class ComputadorDificil extends Jogador{
                     try {
                         if(tabuleiro[linha][coluna-1] == " "){
                             tabuleiro[linha][coluna-1] = this.getSimbolo();
-                            System.out.println("Jogada 4");
                             return;
                         }
                     } catch (Exception ex) {

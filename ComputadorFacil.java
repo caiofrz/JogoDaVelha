@@ -25,9 +25,7 @@ public class ComputadorFacil extends Jogador{
                     tabuleiro[linha][coluna] = this.getSimbolo();
                     validaJogada = true;
                 }
-            }
-            
-            
+            }            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ERRO");
         }
