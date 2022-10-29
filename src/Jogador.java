@@ -28,7 +28,7 @@ public class Jogador{
             linha = (int) input.nextDouble();  //       
                                                // Lendo a posição do tabuleiro para jogada
             System.out.println("Coluna: "); //
-            coluna = (int) input.nextDouble();//
+            coluna = (int) input.nextDouble();// forma usada para correção de um bug do Scanner
 
             if(tabuleiro[linha][coluna] == " "){
                 tabuleiro[linha][coluna] = this.getSimbolo();

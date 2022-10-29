@@ -49,14 +49,12 @@ public class Tabuleiro {
             //Verificando vitoria diagonal 1 
             else if(this.posicoesTabuleiro[0][0] == this.posicoesTabuleiro[1][1] && this.posicoesTabuleiro[1][1] == this.posicoesTabuleiro[2][2] && this.posicoesTabuleiro[0][0] != " "){
                     this.simboloVencedor = this.posicoesTabuleiro[0][0];
-                    System.out.println("Vencedor diagonal 1");
                     return true;
             }
 
             //Verificando vitoria diagonal 2
             else if(this.posicoesTabuleiro[2][0] == this.posicoesTabuleiro[1][1] && this.posicoesTabuleiro[1][1] == this.posicoesTabuleiro[0][2] && this.posicoesTabuleiro[2][0] != " "){
                     this.simboloVencedor = this.posicoesTabuleiro[2][0];
-                    System.out.println("Vencedor diagonal 2");
                     return true;
             } else {
                 //loop para verificar todas as possibilidades de vitoria verticais e horizontais
@@ -64,14 +62,12 @@ public class Tabuleiro {
                     //Verificando vitoria na horizontal
                     if(this.posicoesTabuleiro[i][0] == this.posicoesTabuleiro[i][1] && this.posicoesTabuleiro[i][1] == this.posicoesTabuleiro[i][2] && this.posicoesTabuleiro[i][0] != " "){
                         this.simboloVencedor = this.posicoesTabuleiro[i][0];
-                        System.out.println("Vencedor horizontal 1");
                         return true;
                     } 
 
                         // Verificando vitoria na vertical
                     else if(this.posicoesTabuleiro[0][i] == this.posicoesTabuleiro[1][i] && this.posicoesTabuleiro[1][i] == this.posicoesTabuleiro[2][i] && this.posicoesTabuleiro[0][i] != " "){
                         this.simboloVencedor = this.posicoesTabuleiro[0][i];
-                        System.out.println("Vencedor vertical 1");
                         return true;
                     }
                 }
